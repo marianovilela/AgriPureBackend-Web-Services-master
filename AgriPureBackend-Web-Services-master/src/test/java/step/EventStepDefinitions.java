@@ -26,8 +26,7 @@ public class EventStepDefinitions {
 
     @Given("The Endpoint {string} is available")
     public void theEndpointIsAvailable(String endpointPath) {
-        this.endpointPath=String.format(endpointPath, randomServerPort);
-        //throw new io.cucumber.java.PendingException();
+        this.endpointPath = String.format(endpointPath, randomServerPort);
     }
 
     @When("A event request is sent with values {string}, {string}")
@@ -38,29 +37,27 @@ public class EventStepDefinitions {
 
         HttpEntity<Event> request = new HttpEntity<>(event, headers);
         responseEntity = testRestTemplate.postForEntity(endpointPath, request, String.class);
-        //throw new io.cucumber.java.PendingException();
     }
 
     @Then("A event with status {int} is received")
     public void aEventWithStatusIsReceived(int expectedStatusCode) {
         int actualStatusCode = responseEntity.getStatusCodeValue();
         assertThat(expectedStatusCode).isEqualTo(actualStatusCode);
-        //throw new io.cucumber.java.PendingException();
     }
 
     @When("A event delete is sent with id value {string}")
     public void aEventDeleteIsSentWithIdValue(String id_event) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", id_event);
-        testRestTemplate.delete(endpointPath+"/{id}", params);
+        testRestTemplate.delete(endpointPath + "/{id}", params);
         responseEntity = new ResponseEntity<>(HttpStatus.OK);
     }
 
     @When("A event selected is sent with date value {string}")
     public void aEventSelectedIsSentWithDateValue(String date) {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("id", date);
-        Event event = testRestTemplate.getForObject(endpointPath+"?date=/{date}", Event.class, params);
+        params.put("date", date);
+        Event event = testRestTemplate.getForObject(endpointPath + "?date={date}", Event.class, params);
         responseEntity = new ResponseEntity<>(event.toString(), HttpStatus.OK);
         System.out.println(event.toString());
     }
