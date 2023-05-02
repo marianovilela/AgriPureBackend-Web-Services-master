@@ -32,7 +32,7 @@ public class UserControllerTest {
     @BeforeEach
     void setUp() {
         userList = new ArrayList<>();
-        userList.add(new User(1L, "admin123", "example123@gmail.com", "admin123", true, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+        userList.add(new User(1L, "admin123", "example123@gmail.com", "admin123", true,"Peru","Lima", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
         userList.add(new User(2L, "admin456", "example456@gmail.com", "admin456", false, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
         userList.add(new User(3L, "admin789", "example789@gmail.com", "admin789", false, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
         userList.add(new User(4L, "admin000", "example000@gmail.com", "admin000", true, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
